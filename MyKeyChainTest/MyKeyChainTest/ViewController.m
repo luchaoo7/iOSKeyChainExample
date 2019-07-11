@@ -62,12 +62,12 @@
                                     message:@"No keychain item found for this user"
                                     preferredStyle:(UIAlertControllerStyleAlert)];
         // Show alert
-        [self presentViewController:alert animated:YES completion:^{}];
+        [self presentViewController:alert animated:true completion:^{}];
+        
+        [self closePopUp];
     }
-    
-    
-    
 }
+
 
 - (IBAction)deleteItemPressed:(id)sender {
     //Let's create an empty mutable dictionary
@@ -97,6 +97,9 @@
                                     preferredStyle:(UIAlertControllerStyleAlert)];
         // Show alert
         [self presentViewController:alert animated:YES completion:^{}];
+        
+        [self closePopUp];
+
     }
     
     
@@ -129,6 +132,9 @@
                                     preferredStyle:(UIAlertControllerStyleAlert)];
         // Show alert
         [self presentViewController:alert animated:YES completion:^{}];
+        
+        [self closePopUp];
+
     }else{
         keychainItem[(__bridge id)kSecValueData] = [password dataUsingEncoding: NSUTF8StringEncoding];
         
@@ -174,7 +180,24 @@
                                     preferredStyle:(UIAlertControllerStyleAlert)];
         // Show alert
         [self presentViewController:alert animated:YES completion:^{}];
+        
+        [self closePopUp];
+
     }
 }
 
+// Close the popUp windown
+- (void)popUpTimer{
+    
+    [self dismissViewControllerAnimated:false completion:nil];
+
+}
+
+-(void)closePopUp{
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(popUpTimer) userInfo:nil repeats:NO];
+    });
+    
+}
 @end

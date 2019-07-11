@@ -21,6 +21,7 @@
 - (IBAction)updateButtonPressed:(id)sender;
 - (IBAction)getPasswordPressed:(id)sender;
 - (IBAction)deleteItemPressed:(id)sender;
-
+- (void)closePopUp;
+- (void)popUpTimer;
 @end
 
